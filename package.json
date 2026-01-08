@@ -1,0 +1,20 @@
+{
+  "name": "wanlok-dummy-typescript",
+  "version": "1.0.0",
+  "bin": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --external:jsdom --external:typescript --external:puppeteer --external:puppeteer-extra --external:puppeteer-extra-plugin-stealth",
+    "start": "npm run build && node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^24.10.1",
+    "esbuild": "^0.27.0",
+    "puppeteer": "^24.34.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  },
+  "dependencies": {
+    "jsdom": "^27.2.0"
+  }
+}
