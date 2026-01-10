@@ -16,9 +16,7 @@ const main = async () => {
   } else if (command === "exchange-rate") {
     const from = process.argv[3];
     const to = process.argv[4];
-    if (from && to) {
-      ExchangeRate.get(from, to);
-    }
+    ExchangeRate.get(from, to);
   }
 };
 
