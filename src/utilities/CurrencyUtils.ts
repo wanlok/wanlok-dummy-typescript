@@ -20,7 +20,7 @@ const getExchangeRate1 = async (from: string, to: string) => {
 
 const getExchangeRate2 = async (from: string, to: string) => {
   let exchangeRate: number | null = null;
-  const urlString = `https://hexarate.paikama.co1234/api/rates/${from}/${to}/latest`;
+  const urlString = `https://hexarate.paikama.co/api/rates/${from}/${to}/latest`;
   try {
     const json = (await getJson(urlString)) as {
       data: {
