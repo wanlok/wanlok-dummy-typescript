@@ -1,5 +1,5 @@
-import { ExchangeRate } from "./logic/ExchangeRate";
-import { FileUtils } from "./logic/FileUtils";
+import { ExchangeRate } from "./utilities/ExchangeRate";
+import { FileUtils } from "./utilities/FileUtils";
 
 const main = async () => {
   const command = process.argv[2];
