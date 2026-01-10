@@ -13,14 +13,14 @@ const getExchangeRate1 = async (from: string, to: string) => {
     }
     exchangeRate = rate;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
   return exchangeRate;
 };
 
 const getExchangeRate2 = async (from: string, to: string) => {
   let exchangeRate: number | null = null;
-  const urlString = `https://hexarate.paikama.co/api/rates/${from}/${to}/latest`;
+  const urlString = `https://hexarate.paikama.co1234/api/rates/${from}/${to}/latest`;
   try {
     const json = (await getJson(urlString)) as {
       data: {
@@ -29,14 +29,23 @@ const getExchangeRate2 = async (from: string, to: string) => {
     };
     exchangeRate = json.data.mid;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
   return exchangeRate;
 };
 
-export const ExchangeRate = {
-  get: async (from: string, to: string) => {
-    console.log(await getExchangeRate1(from, to));
-    console.log(await getExchangeRate2(from, to));
+const getExchangeRates = async (from: string, to: string) => {
+  return await Promise.all([getExchangeRate1(from, to), getExchangeRate2(from, to)]);
+};
+
+export const CurrencyUtils = {
+  getExchangeRates: async (from: string, to: string): Promise<(number | null)[]> => {
+    return await getExchangeRates(from, to);
+  },
+  printExchangeRates: async (from: string, to: string) => {
+    const exchangeRates = await getExchangeRates(from, to);
+    for (const exchangeRate of exchangeRates) {
+      console.log(exchangeRate);
+    }
   }
 };

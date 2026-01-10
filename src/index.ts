@@ -1,4 +1,4 @@
-import { ExchangeRate } from "./utilities/ExchangeRate";
+import { CurrencyUtils } from "./utilities/CurrencyUtils";
 import { FileUtils } from "./utilities/FileUtils";
 
 const main = async () => {
@@ -16,7 +16,7 @@ const main = async () => {
   } else if (command === "exchange-rate") {
     const from = process.argv[3];
     const to = process.argv[4];
-    ExchangeRate.get(from, to);
+    CurrencyUtils.printExchangeRates(from, to);
   }
 };
 
