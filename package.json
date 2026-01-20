@@ -4,9 +4,11 @@
   "bin": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node dist/index.js",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^24.10.1",
     "esbuild": "^0.27.0",
@@ -16,6 +18,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "jest": "^30.2.0",
     "jsdom": "^27.2.0",
     "trash": "^10.0.1"
   }
