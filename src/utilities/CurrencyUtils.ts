@@ -7,7 +7,7 @@ const getExchangeRate1 = async (from: string, to: string) => {
     const json = (await getJson(urlString)) as {
       rates: { [key: string]: number | undefined };
     };
-    const rate = json.rates[to];
+    const rate = json.rates[to.toUpperCase()];
     if (rate === undefined) {
       throw new Error(`Exchange rate from ${from} to ${to} not found`);
     }
