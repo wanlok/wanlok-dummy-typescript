@@ -1,5 +1,5 @@
-export interface Task {
+export interface WebPageTask {
   isResponsibleFor(inputs: string[]): boolean;
-  getPageUrlStrings(inputs: string[]): Promise<string[]>;
+  getPaginationUrlStrings(inputs: string[]): Promise<string[]>;
   getContent(urlString: string): Promise<Record<string, unknown>[]>;
 }

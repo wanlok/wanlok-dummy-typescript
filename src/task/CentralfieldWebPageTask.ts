@@ -1,7 +1,7 @@
-import { getPuppeteerResult } from "./getPuppeteerResult";
-import { Task } from "./Task";
+import { getPuppeteerResult } from "../utilities/getPuppeteerResult";
+import { WebPageTask } from "./WebPageTask";
 
-const getPageUrlStrings = async (inputs: string[]) => {
+const getPaginationUrlStrings = async (inputs: string[]) => {
   const [urlString] = inputs;
   console.log(urlString);
   return await getPuppeteerResult<string[]>({
@@ -33,11 +33,11 @@ const getContent = async (urlString: string) => {
   });
 };
 
-export const centralfield: Task = {
+export const centralfield: WebPageTask = {
   isResponsibleFor: (inputs: string[]): boolean => {
     const [urlString] = inputs;
     return urlString.startsWith("https://centralfield.com/product-category/");
   },
-  getPageUrlStrings,
+  getPaginationUrlStrings,
   getContent
 };

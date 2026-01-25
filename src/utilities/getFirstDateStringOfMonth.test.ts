@@ -1,4 +1,4 @@
-import { getFirstDateStringOfMonth } from "./DateUtils";
+import { getFirstDateStringOfMonth } from "./getFirstDateStringOfMonth";
 
 describe(getFirstDateStringOfMonth.name, () => {
   it("should return the first date of the month for a given date string", () => {
