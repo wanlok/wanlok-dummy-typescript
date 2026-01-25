@@ -5,6 +5,7 @@ const getPaginationUrlStrings = async (inputs: string[]) => {
   const [urlString] = inputs;
   console.log(urlString);
   return await getPuppeteerResult<string[]>({
+    headless: false,
     urlString,
     evaluate: (urlString) => {
       const elements = document.getElementsByClassName("collection__products-count");
@@ -31,7 +32,7 @@ const getContent = async (urlString: string) => {
   });
 };
 
-export const jumboComputerWebPageTask: WebPageTask = {
+export const jumboWebPageTask: WebPageTask = {
   isResponsibleFor: (inputs: string[]): boolean => {
     const [urlString] = inputs;
     return urlString.startsWith("https://www.jumbo-computer.com/collections/");
