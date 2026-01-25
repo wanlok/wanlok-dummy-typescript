@@ -1,3 +1,5 @@
 export interface Task {
-  download(urlString: string, directoryPath: string): Promise<void>;
+  isResponsibleFor(inputs: string[]): boolean;
+  getPageUrlStrings(inputs: string[]): Promise<string[]>;
+  getContent(urlString: string): Promise<Record<string, unknown>[]>;
 }
