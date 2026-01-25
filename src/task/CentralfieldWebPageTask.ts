@@ -33,7 +33,7 @@ const getContent = async (urlString: string) => {
   });
 };
 
-export const centralfield: WebPageTask = {
+export const centralfieldWebPageTask: WebPageTask = {
   isResponsibleFor: (inputs: string[]): boolean => {
     const [urlString] = inputs;
     return urlString.startsWith("https://centralfield.com/product-category/");
