@@ -1,5 +1,5 @@
 import { getPuppeteerResult } from "../utilities/getPuppeteerResult";
-import { WebPageTask } from "./WebPageTask";
+import { NamePrice, WebPageTask } from "./WebPageTask";
 
 const getPaginationUrlStrings = async (inputs: string[]) => {
   const [urlString] = inputs;
@@ -17,7 +17,7 @@ const getPaginationUrlStrings = async (inputs: string[]) => {
 
 const getContent = async (urlString: string) => {
   console.log(urlString);
-  return await getPuppeteerResult<{ name: string; price: string }[]>({
+  return await getPuppeteerResult<NamePrice>({
     urlString,
     evaluate: () => {
       const getPrice = (element: Element) => {

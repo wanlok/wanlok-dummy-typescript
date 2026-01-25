@@ -13,6 +13,7 @@ export const getPuppeteerResult = async <T>({
 }): Promise<T> => {
   const browser = await puppeteer.launch({ headless });
   const [page] = await browser.pages();
+  // page.on("console", (consoleMessage) => console.log(consoleMessage.text()));
   await page.goto(urlString, { waitUntil });
   const result = await page.evaluate(evaluate, urlString);
   await browser.close();
