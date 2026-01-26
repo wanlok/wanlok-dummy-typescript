@@ -1,4 +1,4 @@
-import { CurrencyUtils } from "./utilities/CurrencyUtils";
+import { currencyTask } from "./task/CurrencyTask";
 import { deleteMacOSMetadataFiles } from "./utilities/deleteMacOSMetadataFiles";
 import { getWebPageContent, loadJsonAndGetWebPageContent } from "./utilities/getWebPageContent";
 import { isDirectoryPath } from "./utilities/isDirectoryPath";
@@ -17,10 +17,8 @@ const main = async () => {
       if (isDirectoryPath(directoryPath)) {
         await deleteMacOSMetadataFiles(directoryPath);
       }
-    } else if (inputs[0] === "exchange-rate") {
-      const from = inputs[1];
-      const to = inputs[2];
-      CurrencyUtils.printExchangeRates(from, to);
+    } else if (inputs[0] === "fx") {
+      currencyTask.getExchangeRates(inputs);
     } else {
       const content = await loadJsonAndGetWebPageContent(inputs);
       console.log(content);
