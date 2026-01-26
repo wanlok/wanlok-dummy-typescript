@@ -1,8 +1,8 @@
 import { readFile } from "fs/promises";
-import { capitalWebPageTask } from "../task/CapitalWebPageTask";
-import { centralfieldWebPageTask } from "../task/CentralfieldWebPageTask";
-import { jumboWebPageTask } from "../task/JumboWebPageTask";
-import { scorptecWebPageTask } from "../task/ScorptecWebPageTask";
+import { capitalWebPageTask } from "../task/computer/CapitalWebPageTask";
+import { centralfieldWebPageTask } from "../task/computer/CentralfieldWebPageTask";
+import { jumboWebPageTask } from "../task/computer/JumboWebPageTask";
+import { scorptecWebPageTask } from "../task/computer/ScorptecWebPageTask";
 
 const webPageTasks = [capitalWebPageTask, centralfieldWebPageTask, jumboWebPageTask, scorptecWebPageTask];
 

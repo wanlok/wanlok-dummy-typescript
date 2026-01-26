@@ -1,5 +1,5 @@
-import { getPuppeteerResult } from "../utilities/getPuppeteerResult";
-import { NamePrice, WebPageTask } from "./WebPageTask";
+import { getPuppeteerResult } from "../../utilities/getPuppeteerResult";
+import { NamePrice, WebPageTask } from "../WebPageTask";
 
 const waitUntil = "domcontentloaded";
 
