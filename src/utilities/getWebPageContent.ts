@@ -1,9 +1,10 @@
 import { readFile } from "fs/promises";
+import { capitalWebPageTask } from "../task/CapitalWebPageTask";
 import { centralfieldWebPageTask } from "../task/CentralfieldWebPageTask";
 import { jumboWebPageTask } from "../task/JumboWebPageTask";
 import { scorptecWebPageTask } from "../task/ScorptecWebPageTask";
 
-const webPageTasks = [centralfieldWebPageTask, jumboWebPageTask, scorptecWebPageTask];
+const webPageTasks = [capitalWebPageTask, centralfieldWebPageTask, jumboWebPageTask, scorptecWebPageTask];
 
 export const getWebPageContent = async (inputs: string[]) => {
   const content = [];
@@ -14,7 +15,7 @@ export const getWebPageContent = async (inputs: string[]) => {
       console.log(urlStrings);
       for (const urlString of urlStrings) {
         content.push(...(await task.getContent(urlString)));
-        if (count === 0) {
+        if (count === 1) {
           break;
         }
         count = count + 1;

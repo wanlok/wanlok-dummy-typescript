@@ -7,12 +7,11 @@ const getPaginationUrlStrings = async (inputs: string[]) => {
   return await getPuppeteerResult<string[]>({
     urlString,
     evaluate: (urlString) => {
-      const elements = document.getElementsByClassName("collection__products-count");
+      const elements = document.querySelectorAll<HTMLAnchorElement>("a[data-ci-pagination-page]");
       if (elements.length === 0) {
         return [];
       }
-      const [, , , count, , total] = elements[0].textContent.split(" ");
-      const length = Math.ceil(parseInt(total) / parseInt(count));
+      const length = parseInt(elements[elements.length - 1].getAttribute("data-ci-pagination-page") ?? "0");
       return Array.from({ length }, (_, i) => `${urlString}?page=${i + 1}`);
     }
   });
@@ -23,18 +22,18 @@ const getContent = async (urlString: string) => {
   return await getPuppeteerResult<NamePrice>({
     urlString,
     evaluate: () => {
-      return Array.from(document.getElementsByClassName("product-item")).map((element) => ({
-        name: element.getElementsByClassName("product-item__title")[0].textContent,
-        price: element.getElementsByClassName("price")[0].textContent
+      return Array.from(document.getElementsByClassName("product-card")).map((element) => ({
+        name: element.getElementsByClassName("product-title")[0].textContent,
+        price: element.getElementsByClassName("product-price")[0].textContent
       }));
     }
   });
 };
 
-export const jumboWebPageTask: WebPageTask = {
+export const capitalWebPageTask: WebPageTask = {
   isResponsibleFor: (inputs: string[]): boolean => {
     const [urlString] = inputs;
-    return urlString.startsWith("https://www.jumbo-computer.com/collections/");
+    return urlString.startsWith("https://www.cap.com.hk/products/category/");
   },
   getPaginationUrlStrings,
   getContent
