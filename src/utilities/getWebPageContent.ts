@@ -1,8 +1,7 @@
-import { readFile } from "fs/promises";
-import { capitalWebPageTask } from "../task/computer/CapitalWebPageTask";
-import { centralfieldWebPageTask } from "../task/computer/CentralfieldWebPageTask";
-import { jumboWebPageTask } from "../task/computer/JumboWebPageTask";
-import { scorptecWebPageTask } from "../task/computer/ScorptecWebPageTask";
+import { capitalWebPageTask } from "../task/computer/capitalWebPageTask";
+import { centralfieldWebPageTask } from "../task/computer/centralfieldWebPageTask";
+import { jumboWebPageTask } from "../task/computer/jumboWebPageTask";
+import { scorptecWebPageTask } from "../task/computer/scorptecWebPageTask";
 
 const webPageTasks = [capitalWebPageTask, centralfieldWebPageTask, jumboWebPageTask, scorptecWebPageTask];
 
@@ -20,20 +19,6 @@ export const getWebPageContent = async (inputs: string[]) => {
         }
         count = count + 1;
       }
-    }
-  }
-  return content;
-};
-
-export const loadJsonAndGetWebPageContent = async (inputs: string[]) => {
-  const content = [];
-  const [product, company, name] = inputs;
-  const file = await readFile(`./src/data/${product}/${company}.json`, "utf8");
-  const list: { name: string; urls: string[] }[] = JSON.parse(file);
-  const item = list.find((item) => item.name.toLowerCase() === name.toLocaleLowerCase());
-  if (item) {
-    for (const url of item.urls) {
-      content.push(...(await getWebPageContent([url])));
     }
   }
   return content;

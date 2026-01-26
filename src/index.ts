@@ -1,6 +1,7 @@
 import { currencyTask } from "./task/currencyTask";
 import { deleteMacOSMetadataFiles } from "./utilities/deleteMacOSMetadataFiles";
-import { getWebPageContent, loadJsonAndGetWebPageContent } from "./utilities/getWebPageContent";
+import { readJsonAndGetWebPageContent } from "./utilities/readJsonAndGetWebPageContent";
+import { getWebPageContent } from "./utilities/getWebPageContent";
 import { listMacOSMetadataFiles } from "./utilities/listMacOSMetadataFiles";
 
 const main = async () => {
@@ -13,8 +14,7 @@ const main = async () => {
     } else if (inputs[0] === "fx") {
       currencyTask.getExchangeRates(inputs);
     } else {
-      const content = await loadJsonAndGetWebPageContent(inputs);
-      console.log(content);
+      await readJsonAndGetWebPageContent(inputs);
     }
   } else {
     const content = await getWebPageContent(inputs);
