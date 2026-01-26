@@ -1,6 +1,10 @@
 [
   {
+    "name": "GPU",
+    "urls": ["https://www.jumbo-computer.com/collections/顯示卡"]
+  },
+  {
     "name": "SSD",
-    "url": "https://www.jumbo-computer.com/collections/固態硬碟"
+    "urls": ["https://www.jumbo-computer.com/collections/固態硬碟"]
   }
 ]

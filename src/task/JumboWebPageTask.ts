@@ -5,7 +5,6 @@ const getPaginationUrlStrings = async (inputs: string[]) => {
   const [urlString] = inputs;
   console.log(urlString);
   return await getPuppeteerResult<string[]>({
-    headless: false,
     urlString,
     evaluate: (urlString) => {
       const elements = document.getElementsByClassName("collection__products-count");
