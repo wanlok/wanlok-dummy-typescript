@@ -20,15 +20,12 @@ const getContent = async (urlString: string) => {
   return await getPuppeteerResult<NamePrice>({
     urlString,
     evaluate: () => {
-      const getPrice = (element: Element) => {
+      return Array.from(document.getElementsByClassName("grid-item")).map((element) => {
         const priceElement = element.getElementsByClassName("S_price")[0];
         Array.from(priceElement.getElementsByClassName("ori_price")).forEach((element) => element.remove());
-        return priceElement.textContent;
-      };
-      return Array.from(document.getElementsByClassName("card")).map((element) => ({
-        name: element.getElementsByClassName("product_name")[0].textContent,
-        price: getPrice(element)
-      }));
+        const price = priceElement.textContent;
+        return { name: element.getElementsByClassName("product_name")[0].textContent, price };
+      });
     }
   });
 };

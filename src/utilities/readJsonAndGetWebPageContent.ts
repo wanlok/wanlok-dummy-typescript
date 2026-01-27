@@ -5,7 +5,6 @@ import { isFileExists } from "./isFileExists";
 import { writeJson } from "./writeJson";
 
 export const readJsonAndGetWebPageContent = async (inputs: string[]) => {
-  console.log("getJsonAndWebPageContent");
   const [product, company, name] = inputs;
   const dateString = formatDate(new Date());
   const filePath = `C:\\Files\\Projects\\responses\\${product}\\${company}\\${name}\\${dateString}.json`;
