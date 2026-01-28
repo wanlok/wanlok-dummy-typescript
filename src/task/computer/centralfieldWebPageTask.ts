@@ -21,9 +21,13 @@ const getContent = async (urlString: string) => {
     urlString,
     evaluate: () => {
       return Array.from(document.getElementsByClassName("grid-item")).map((element) => {
-        const priceElement = element.getElementsByClassName("S_price")[0];
-        Array.from(priceElement.getElementsByClassName("ori_price")).forEach((element) => element.remove());
-        const price = priceElement.textContent;
+        let price = null;
+        const priceElements = element.getElementsByClassName("S_price");
+        if (priceElements && priceElements.length > 0) {
+          const priceElement = priceElements[0];
+          Array.from(priceElement.getElementsByClassName("ori_price")).forEach((element) => element.remove());
+          price = priceElement.textContent;
+        }
         return { name: element.getElementsByClassName("product_name")[0].textContent, price };
       });
     }

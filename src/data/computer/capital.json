@@ -1,5 +1,9 @@
 [
   {
+    "name": "cpu",
+    "urls": ["https://www.cap.com.hk/products/category/cpu"]
+  },
+  {
     "name": "gpu",
     "urls": ["https://www.cap.com.hk/products/category/graphics-card"]
   }

@@ -14,7 +14,7 @@ export const getWebPageContent = async (inputs: string[]) => {
       console.log(urlStrings);
       for (const urlString of urlStrings) {
         content.push(...(await task.getContent(urlString)));
-        if (count === 1) {
+        if (count === 2) {
           break;
         }
         count = count + 1;
