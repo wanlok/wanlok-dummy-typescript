@@ -1,8 +1,7 @@
 import { getPuppeteerResult } from "../../utilities/getPuppeteerResult";
 import { NamePrice, WebPageTask } from "../../types";
 
-const getPaginationUrlStrings = async (inputs: string[]) => {
-  const [urlString] = inputs;
+const getPaginationUrlStrings = async (urlString: string) => {
   console.log(urlString);
   return await getPuppeteerResult<string[]>({
     urlString,
@@ -32,10 +31,7 @@ const getContent = async (urlString: string) => {
 };
 
 export const jumboWebPageTask: WebPageTask = {
-  isResponsibleFor: (inputs: string[]): boolean => {
-    const [urlString] = inputs;
-    return urlString.startsWith("https://www.jumbo-computer.com/collections/");
-  },
+  isResponsibleFor: (urlString) => urlString.startsWith("https://www.jumbo-computer.com/collections/"),
   getPaginationUrlStrings,
   getContent
 };

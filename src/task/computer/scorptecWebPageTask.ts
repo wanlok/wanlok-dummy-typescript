@@ -3,8 +3,7 @@ import { NamePrice, WebPageTask } from "../../types";
 
 const waitUntil = "domcontentloaded";
 
-const getPaginationUrlStrings = async (inputs: string[]) => {
-  const [urlString] = inputs;
+const getPaginationUrlStrings = async (urlString: string) => {
   console.log(urlString);
   return await getPuppeteerResult<string[]>({
     headless: false,
@@ -34,10 +33,7 @@ const getContent = async (urlString: string) => {
 };
 
 export const scorptecWebPageTask: WebPageTask = {
-  isResponsibleFor: (inputs: string[]): boolean => {
-    const [urlString] = inputs;
-    return urlString.startsWith("https://www.scorptec.com.au/product/");
-  },
+  isResponsibleFor: (urlString) => urlString.startsWith("https://www.scorptec.com.au/product/"),
   getPaginationUrlStrings,
   getContent
 };
