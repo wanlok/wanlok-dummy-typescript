@@ -7,8 +7,36 @@ import { isFileExists } from "./isFileExists";
 import { jumboWebPageTask } from "../task/computer/jumboWebPageTask";
 import { scorptecWebPageTask } from "../task/computer/scorptecWebPageTask";
 import { writeJson } from "./writeJson";
+import { WebPageTask } from "../types";
 
 const webPageTasks = [capitalWebPageTask, centralfieldWebPageTask, jumboWebPageTask, scorptecWebPageTask];
+
+const getPaginationContent = async (
+  dateString: string | number,
+  product: string | number | undefined,
+  company: string | number | undefined,
+  name: string | number | undefined,
+  i: string | number | undefined,
+  j: number,
+  task: WebPageTask,
+  urlString: string
+) => {
+  let content: Record<string, unknown>[];
+  if (product && company && name && typeof i === "number") {
+    const fileName = `${dateString}_${i + 1}_${j + 1}.json`;
+    const filePath = [process.env.DIRECTORY_PATH, product, company, name, fileName].join(sep);
+    if (isFileExists(filePath)) {
+      console.log(filePath);
+      content = JSON.parse(await readFile(filePath, "utf8"));
+    } else {
+      content = await task.getContent(urlString);
+      writeJson(content, filePath);
+    }
+  } else {
+    content = await task.getContent(urlString);
+  }
+  return content;
+};
 
 export const getWebPageContent = async (inputs: [string, ...(string | number | undefined)[]]) => {
   const content: Record<string, unknown>[] = [];
@@ -20,22 +48,7 @@ export const getWebPageContent = async (inputs: [string, ...(string | number | u
       const urlStrings = await task.getPaginationUrlStrings(urlString);
       console.log(urlStrings);
       for (var j = 0; j < urlStrings.length; j++) {
-        const urlString = urlStrings[j];
-        if (product && company && name && typeof i === "number") {
-          const fileName = `${dateString}_${i + 1}_${j + 1}.json`;
-          const filePath = [process.env.DIRECTORY_PATH, product, company, name, fileName].join(sep);
-          let pageContent;
-          if (isFileExists(filePath)) {
-            console.log(filePath);
-            pageContent = JSON.parse(await readFile(filePath, "utf8"));
-          } else {
-            pageContent = await task.getContent(urlString);
-            writeJson(pageContent, filePath);
-          }
-          content.push(...pageContent);
-        } else {
-          content.push(...(await task.getContent(urlString)));
-        }
+        content.push(...(await getPaginationContent(dateString, product, company, name, i, j, task, urlStrings[j])));
         count = count + 1;
         if (process.env.LIMIT && count === parseInt(process.env.LIMIT)) {
           break;
