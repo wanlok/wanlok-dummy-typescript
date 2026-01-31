@@ -10,21 +10,19 @@ import { writeJson } from "./writeJson";
 
 const webPageTasks = [capitalWebPageTask, centralfieldWebPageTask, jumboWebPageTask, scorptecWebPageTask];
 
-const limit = 99999;
-
-export const getWebPageContent = async (inputs: [string, ...(string | undefined)[]]) => {
+export const getWebPageContent = async (inputs: [string, ...(string | number | undefined)[]]) => {
   const content: Record<string, unknown>[] = [];
-  const [urlString, product, company, name, inputDateString] = inputs;
+  const [urlString, inputDateString, product, company, name, i] = inputs;
   const dateString = inputDateString ?? formatDate(new Date());
   for (const task of webPageTasks) {
     if (task.isResponsibleFor(urlString)) {
       let count = 0;
       const urlStrings = await task.getPaginationUrlStrings(urlString);
       console.log(urlStrings);
-      for (var i = 0; i < urlStrings.length; i++) {
-        const urlString = urlStrings[i];
-        if (product && company && name) {
-          const fileName = `${dateString}_${i + 1}.json`;
+      for (var j = 0; j < urlStrings.length; j++) {
+        const urlString = urlStrings[j];
+        if (product && company && name && typeof i === "number") {
+          const fileName = `${dateString}_${i + 1}_${j + 1}.json`;
           const filePath = [process.env.DIRECTORY_PATH, product, company, name, fileName].join(sep);
           let pageContent;
           if (isFileExists(filePath)) {
@@ -39,7 +37,7 @@ export const getWebPageContent = async (inputs: [string, ...(string | undefined)
           content.push(...(await task.getContent(urlString)));
         }
         count = count + 1;
-        if (count === limit) {
+        if (process.env.LIMIT && count === parseInt(process.env.LIMIT)) {
           break;
         }
       }

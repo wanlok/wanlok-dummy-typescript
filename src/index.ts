@@ -6,7 +6,7 @@ import { listMacOSMetadataFiles } from "./utilities/listMacOSMetadataFiles";
 
 const main = async () => {
   const inputs = process.argv.slice(2);
-  if (inputs.length > 0) {
+  if (inputs.length > 1) {
     if (inputs[0] === "list") {
       listMacOSMetadataFiles(inputs);
     } else if (inputs[0] === "delete") {
@@ -16,8 +16,8 @@ const main = async () => {
     } else {
       await readJsonAndGetWebPageContent(inputs);
     }
-  } else {
-    const content = await getWebPageContent(inputs);
+  } else if (inputs.length > 0) {
+    const content = await getWebPageContent(inputs as [string]);
     console.log(content);
   }
 };

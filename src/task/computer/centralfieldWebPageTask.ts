@@ -1,5 +1,5 @@
 import { getPuppeteerResult } from "../../utilities/getPuppeteerResult";
-import { NamePrice, WebPageTask } from "../../types";
+import { ImageUrlNamePrice, WebPageTask } from "../../types";
 
 const getPaginationUrlStrings = async (urlString: string) => {
   console.log(urlString);
@@ -16,7 +16,7 @@ const getPaginationUrlStrings = async (urlString: string) => {
 
 const getContent = async (urlString: string) => {
   console.log(urlString);
-  return await getPuppeteerResult<NamePrice>({
+  return await getPuppeteerResult<ImageUrlNamePrice[]>({
     urlString,
     evaluate: () => {
       return Array.from(document.getElementsByClassName("grid-item")).map((element) => {
@@ -27,7 +27,11 @@ const getContent = async (urlString: string) => {
           Array.from(priceElement.getElementsByClassName("ori_price")).forEach((element) => element.remove());
           price = priceElement.textContent;
         }
-        return { name: element.getElementsByClassName("product_name")[0].textContent, price };
+        return {
+          image_url: element.getElementsByTagName("img")[0].src,
+          name: element.getElementsByClassName("product_name")[0].textContent,
+          price
+        };
       });
     }
   });

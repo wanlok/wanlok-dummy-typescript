@@ -1,5 +1,5 @@
 import { getPuppeteerResult } from "../../utilities/getPuppeteerResult";
-import { NamePrice, WebPageTask } from "../../types";
+import { ImageUrlNamePrice, WebPageTask } from "../../types";
 
 const waitUntil = "domcontentloaded";
 
@@ -19,12 +19,13 @@ const getPaginationUrlStrings = async (urlString: string) => {
 
 const getContent = async (urlString: string) => {
   console.log(urlString);
-  return await getPuppeteerResult<NamePrice>({
+  return await getPuppeteerResult<ImageUrlNamePrice[]>({
     headless: false,
     waitUntil,
     urlString,
     evaluate: () => {
       return Array.from(document.querySelectorAll(".product-grid:not(.element-hidden)")).map((element) => ({
+        image_url: element.getElementsByTagName("img")[0].src,
         name: element.getElementsByClassName("grid-product-title")[0].textContent.trim(),
         price: element.getElementsByClassName("grid-product-price")[0]?.textContent.trim()
       }));
