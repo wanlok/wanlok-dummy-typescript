@@ -1,5 +1,9 @@
 [
   {
+    "name": "cpu",
+    "urls": ["https://centralfield.com/product-category/CPU/"]
+  },
+  {
     "name": "gpu",
     "urls": ["https://centralfield.com/product-category/VGA/"]
   }
