@@ -23,9 +23,9 @@ const getContent = async (urlString: string) => {
     urlString,
     evaluate: () => {
       return Array.from(document.getElementsByClassName("product-item")).map((element) => ({
-        image_url: element.getElementsByTagName("img")[0].src,
-        name: element.getElementsByClassName("product-item__title")[0].textContent,
-        price: element.getElementsByClassName("price")[0].textContent
+        image_url: element.getElementsByTagName("img")[0]?.src,
+        name: element.getElementsByClassName("product-item__title")[0]?.textContent,
+        price: element.getElementsByClassName("price")[0]?.textContent
       }));
     }
   });

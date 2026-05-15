@@ -28,8 +28,8 @@ const getContent = async (urlString: string) => {
           price = priceElement.textContent;
         }
         return {
-          image_url: element.getElementsByTagName("img")[0].src,
-          name: element.getElementsByClassName("product_name")[0].textContent,
+          image_url: element.getElementsByTagName("img")[0]?.src,
+          name: element.getElementsByClassName("product_name")[0]?.textContent,
           price
         };
       });

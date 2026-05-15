@@ -25,8 +25,8 @@ const getContent = async (urlString: string) => {
     urlString,
     evaluate: () => {
       return Array.from(document.querySelectorAll(".product-grid:not(.element-hidden)")).map((element) => ({
-        image_url: element.getElementsByTagName("img")[0].src,
-        name: element.getElementsByClassName("grid-product-title")[0].textContent.trim(),
+        image_url: element.getElementsByTagName("img")[0]?.src,
+        name: element.getElementsByClassName("grid-product-title")[0]?.textContent?.trim(),
         price: element.getElementsByClassName("grid-product-price")[0]?.textContent.trim()
       }));
     }

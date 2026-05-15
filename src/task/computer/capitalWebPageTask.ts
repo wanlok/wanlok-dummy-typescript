@@ -22,9 +22,9 @@ const getContent = async (urlString: string) => {
     urlString,
     evaluate: () => {
       return Array.from(document.getElementsByClassName("product-card")).map((element) => ({
-        image_url: element.getElementsByTagName("img")[0].src,
-        name: element.getElementsByClassName("product-title")[0].textContent,
-        price: element.getElementsByClassName("product-price")[0].textContent
+        image_url: element.getElementsByTagName("img")[0]?.src,
+        name: element.getElementsByTagName("h6")[0]?.textContent,
+        price: element.getElementsByClassName("price-current")[0]?.textContent
       }));
     }
   });

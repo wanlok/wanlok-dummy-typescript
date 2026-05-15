@@ -1,4 +1,4 @@
-import { currencyTask } from "./task/currencyTask";
+import { currencyTask } from "./task/CurrencyTask";
 import { deleteMacOSMetadataFiles } from "./utilities/deleteMacOSMetadataFiles";
 import { readJsonAndGetWebPageContent } from "./utilities/readJsonAndGetWebPageContent";
 import { getWebPageContent } from "./utilities/getWebPageContent";
