@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /Users/wanlok/Files/Projects/responses/*)",
+      "Bash(mkdir -p /Users/wanlok/Files/Projects/responses/*)",
+      "Write(/Users/wanlok/Files/Projects/responses/**)"
+    ]
+  }
+}
