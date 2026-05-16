@@ -6,5 +6,9 @@
   {
     "name": "gpu",
     "urls": ["https://www.cap.com.hk/products/category/graphics-card"]
+  },
+  {
+    "name": "ram",
+    "urls": ["https://www.cap.com.hk/products/category/ram"]
   }
 ]

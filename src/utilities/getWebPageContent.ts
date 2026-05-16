@@ -1,5 +1,5 @@
-import { readFile } from "fs/promises";
-import { sep } from "path";
+import { mkdir, readFile } from "fs/promises";
+import { dirname, sep } from "path";
 import { capitalWebPageTask } from "../task/computer/capitalWebPageTask";
 import { centralfieldWebPageTask } from "../task/computer/centralfieldWebPageTask";
 import { formatDate } from "./formatDate";
@@ -29,6 +29,7 @@ const getPaginationContent = async (
       console.log(filePath);
       content = JSON.parse(await readFile(filePath, "utf8"));
     } else {
+      await mkdir(dirname(filePath), { recursive: true });
       content = await task.getContent(urlString);
       writeJson(content, filePath);
     }

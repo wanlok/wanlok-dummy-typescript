@@ -6,5 +6,9 @@
   {
     "name": "gpu",
     "urls": ["https://centralfield.com/product-category/VGA/"]
+  },
+  {
+    "name": "ram",
+    "urls": ["https://centralfield.com/product-category/RAM/"]
   }
 ]

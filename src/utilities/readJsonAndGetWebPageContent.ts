@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { readFile } from "fs/promises";
-import { sep } from "path";
+import { mkdir, readFile } from "fs/promises";
+import { dirname, sep } from "path";
 import { formatDate } from "./formatDate";
 import { getWebPageContent } from "./getWebPageContent";
 import { isFileExists } from "./isFileExists";
@@ -22,6 +22,7 @@ export const readJsonAndGetWebPageContent = async (inputs: string[]) => {
         content.push(...(await getWebPageContent([item.urls[i], dateString, product, company, name, i])));
       }
     }
+    await mkdir(dirname(filePath), { recursive: true });
     writeJson(content, filePath);
   }
   return content;

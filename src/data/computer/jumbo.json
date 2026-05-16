@@ -8,6 +8,10 @@
     "urls": ["https://www.jumbo-computer.com/collections/顯示卡"]
   },
   {
+    "name": "ram",
+    "urls": ["https://www.jumbo-computer.com/en/collections/電腦記憶體"]
+  },
+  {
     "name": "ssd",
     "urls": ["https://www.jumbo-computer.com/collections/固態硬碟"]
   }
