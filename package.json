@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsx src/index.ts",
+    "groupProduct": "tsx src/groupProduct.ts",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },

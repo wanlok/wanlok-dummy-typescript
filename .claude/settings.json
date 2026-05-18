@@ -1,9 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls /Users/wanlok/Files/Projects/responses/*)",
-      "Bash(mkdir -p /Users/wanlok/Files/Projects/responses/*)",
-      "Write(/Users/wanlok/Files/Projects/responses/**)"
+      "Write(/Volumes/A/Files/Projects/wanlok-dummy-typescript/src/temp/group.ts)",
+      "Bash(npm run groupProduct *)",
+      "Bash(ls /Users/wanlok/Files/Projects/responses/*)"
     ]
   }
 }
