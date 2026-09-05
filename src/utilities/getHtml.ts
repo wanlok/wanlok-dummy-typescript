@@ -5,10 +5,10 @@ const headers = {
   "Accept-Language": "en-US,en;q=0.9"
 };
 
-export const getHtml = async (url: string): Promise<string> => {
+export const getHtml = async (url: string): Promise<string | null> => {
   const response = await fetch(url, { headers });
   if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+    return null;
   }
   return await response.text();
 };
