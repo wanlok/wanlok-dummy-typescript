@@ -1,4 +1,4 @@
-import { getJson } from "../utilities/getJson";
+import { getJson } from "../utils/getJson";
 
 const getExchangeRate1 = async (from: string, to: string) => {
   let exchangeRate: number | null = null;

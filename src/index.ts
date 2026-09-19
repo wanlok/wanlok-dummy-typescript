@@ -1,8 +1,8 @@
 import { currencyTask } from "./task/CurrencyTask";
-import { deleteMacOSMetadataFiles } from "./utilities/deleteMacOSMetadataFiles";
-import { readJsonAndGetWebPageContent } from "./utilities/readJsonAndGetWebPageContent";
-import { getWebPageContent } from "./utilities/getWebPageContent";
-import { listMacOSMetadataFiles } from "./utilities/listMacOSMetadataFiles";
+import { deleteMacOSMetadataFiles } from "./utils/deleteMacOSMetadataFiles";
+import { readJsonAndGetWebPageContent } from "./utils/readJsonAndGetWebPageContent";
+import { getWebPageContent } from "./utils/getWebPageContent";
+import { listMacOSMetadataFiles } from "./utils/listMacOSMetadataFiles";
 import { keyFactsSheet } from "./task/keyFactsSheet";
 
 const main = async () => {

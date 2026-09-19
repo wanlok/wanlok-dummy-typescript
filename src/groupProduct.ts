@@ -1,8 +1,8 @@
 import "dotenv/config";
 import { sep } from "path";
-import { getJsonFilePaths } from "./utilities/getJsonFilePaths";
+import { getJsonFilePaths } from "./utils/getJsonFilePaths";
 import { group } from "./temp/group";
-import { writeJson } from "./utilities/writeJson";
+import { writeJson } from "./utils/writeJson";
 
 const groupProduct = async () => {
   const [category, product] = process.argv.slice(2);

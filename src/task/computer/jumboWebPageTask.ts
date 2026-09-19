@@ -1,4 +1,4 @@
-import { getPuppeteerResult } from "../../utilities/getPuppeteerResult";
+import { getPuppeteerResult } from "../../utils/getPuppeteerResult";
 import { ImageUrlNamePrice, WebPageTask } from "../../types";
 
 const getPaginationUrlStrings = async (urlString: string) => {
