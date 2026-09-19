@@ -31,6 +31,22 @@ const getOptionTexts = async (page: Page, title: string): Promise<string[]> => {
   return texts;
 };
 
+type Table = {
+  title: string;
+  rows: string[][];
+};
+
+const getTables = async (page: Page): Promise<Table[]> => {
+  return await page.evaluate(() =>
+    Array.from(document.querySelectorAll("table")).map((table) => ({
+      title: table.querySelector("th")?.textContent?.trim() ?? "",
+      rows: Array.from(table.querySelectorAll("tr"))
+        .slice(1)
+        .map((tr) => Array.from(tr.querySelectorAll("td")).map((td) => td.textContent?.trim() ?? ""))
+    }))
+  );
+};
+
 const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
 
 const randomDelayBetweenGenerations = async (): Promise<void> => {
@@ -41,10 +57,12 @@ export const saveKeyFactsSheets = async (
   url: string,
   rateTitle: string,
   csvFilePath: string,
+  jsonDirectoryPath: string,
   screenshotDirectoryPath: string,
   amount: number,
   term: number
 ): Promise<void> => {
+  await mkdir(jsonDirectoryPath, { recursive: true });
   await mkdir(screenshotDirectoryPath, { recursive: true });
 
   const browser = await chromium.launch();
@@ -82,6 +100,12 @@ export const saveKeyFactsSheets = async (
           ]);
           await popup.waitForLoadState("load");
           await popup.screenshot({ path: path.join(screenshotDirectoryPath, `${rows.length}.png`), fullPage: true });
+          const tables = await getTables(popup);
+          await writeFile(
+            path.join(jsonDirectoryPath, `${rows.length}.json`),
+            JSON.stringify(tables, null, 2),
+            "utf-8"
+          );
           await popup.close();
 
           await randomDelayBetweenGenerations();
